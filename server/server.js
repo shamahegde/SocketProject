@@ -19,7 +19,7 @@ server.listen(port,()=>console.log(`Server running on ${port}`));
 var io=socketIO(server);
 io.on('connection',(socket)=>{
     console.log("client connected!");
-    socket.emit('newEmail',{
+    socket.emit('newMessage',{
         from:'shama@shama.com',
         text:'ohh life!',
         createdAt:123
@@ -27,6 +27,10 @@ io.on('connection',(socket)=>{
     socket.on('disconnect',()=>{
                 console.log("user was disconnected ");
             });
+    socket.on('createMessage',(message)=>
+    {
+        console.log(message);
+    });
     socket.on('createEmail',(newEmail)=>{
         console.log("got email!!!");
     })
